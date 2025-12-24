@@ -6,7 +6,7 @@ const startApp = () => {
     showMenu();
     console.log("\nGoodbye!");
 }
-
+//we added the 1st round now we have to add more rounds and I would like to find a way to update the stats with who is scoring the highest in real time.
 const prompt = require("prompt-sync")();
 const quizData = require("./quizData");
 

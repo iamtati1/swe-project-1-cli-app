@@ -31,9 +31,18 @@ function viewHighScores() {
     });
     console.log("");
 }
+function updateHighScores(name, score) {
+    const today = new Date().toLocaleDateString();
+
+    highScores.push({ name, score, date: today });
+
+    // Sort highest → lowest
+    highScores.sort((a, b) => b.score - a.score);
+}
 
 module.exports = {
     questions,
     highScores,
-    viewHighScores
+    viewHighScores,
+    updateHighScores
 };

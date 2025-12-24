@@ -1,7 +1,8 @@
 const prompt = require("prompt-sync")();
-const { questions } = require("./quizData");
+const { questions, updateHighScores } = require("./quizData");
 
 function playRound() {
+    const name = prompt("Enter your name: ");
     console.log("\n🎮 Starting a round...\n");
 
     let score = 0;
@@ -23,6 +24,8 @@ function playRound() {
     }
 
     console.log(`\nScore: ${score}\n`);
+
+    updateHighScores(name, score);
 }
 
 module.exports = { playRound };
