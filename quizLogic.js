@@ -1,90 +1,50 @@
 const prompt = require("prompt-sync")();
 const { updateHighScores } = require("./quizData");
+const { generateMathQuestion } = require("./quizData");
 
-function playRound() {
+const playRound = () => {
     const name = prompt("Enter your name: ");
-    console.log("\n🎮 Starting a round...\n");
-
     let score = 0;
-    const question = generateMathQuestion();
+    const askedQuestions = new Set();
 
+    // Step 1: choose number of questions
+    const numQuestionsOptions = [5, 10, 12, 15, 20, 25, 30];
 
-    console.log(question.question);
+    console.log("\nHow many questions would you like to answer?");
+    numQuestionsOptions.forEach((opt) => console.log(opt));
 
-    question.choices.forEach((choice, index) => {
-        console.log(`${index + 1}. ${choice}`);
-    });
+    let numQuestions;
+    do {
+        numQuestions = Number(prompt("Choose a number of questions: "));
+    } while (!numQuestionsOptions.includes(numQuestions));
 
-    const answer = prompt("Your answer (number): ");
+    // Step 2: play exact number of questions
+    for (let i = 0; i < numQuestions; i++) {
+        let question;
+        do {
+            question = generateMathQuestion();
+        } while (askedQuestions.has(question.question));
 
-    if (Number(answer) === question.answerIndex + 1) {
-        console.log("✅ Correct!");
-        score++;
-    } else {
-        console.log("❌ Incorrect.");
+        askedQuestions.add(question.question);
+
+        console.log(`\nQuestion ${i + 1}: ${question.question}`);
+        question.choices.forEach((choice, index) => {
+            console.log(`${index + 1}. ${choice}`);
+        });
+
+        const answer = Number(prompt("Your answer (number): "));
+
+        if (answer === question.answerIndex + 1) {
+            console.log("✅ Correct!");
+            score++;
+        } else {
+            console.log(
+                `❌ Incorrect. Correct answer: ${question.choices[question.answerIndex]}`
+            );
+        }
     }
 
-    console.log(`\nScore: ${score}\n`);
-
+    console.log(`\n🎯 ${name}, your final score: ${score} out of ${numQuestions}`);
     updateHighScores(name, score);
-}
-
-const generateMathQuestion = () => {
-    const operators = ["+", "-", "*", "/"];
-    const operator = operators[Math.floor(Math.random() * operators.length)];
-
-    let num1;
-    let num2;
-    let correctAnswer;
-
-    if (operator === "+") {
-        num1 = Math.floor(Math.random() * 10) + 1;
-        num2 = Math.floor(Math.random() * 10) + 1;
-        correctAnswer = num1 + num2;
-
-    } else if (operator === "-") {
-        num1 = Math.floor(Math.random() * 10) + 1;
-        num2 = Math.floor(Math.random() * 10) + 1;
-
-        if (num2 > num1) {
-            [num1, num2] = [num2, num1];
-        }
-
-        correctAnswer = num1 - num2;
-
-    } else if (operator === "*") {
-        num1 = Math.floor(Math.random() * 10) + 1;
-        num2 = Math.floor(Math.random() * 10) + 1;
-        correctAnswer = num1 * num2;
-
-    } else {
-        correctAnswer = Math.floor(Math.random() * 10) + 1;
-        num2 = Math.floor(Math.random() * 10) + 1;
-        num1 = correctAnswer * num2;
-    }
-
-    const choices = new Set();
-    choices.add(correctAnswer);
-
-    while (choices.size < 4) {
-        const fakeAnswer = correctAnswer + Math.floor(Math.random() * 10) - 5;
-        if (fakeAnswer >= 0) {
-            choices.add(fakeAnswer);
-        }
-    }
-
-    const choicesArray = Array.from(choices);
-
-    for (let i = choicesArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [choicesArray[i], choicesArray[j]] = [choicesArray[j], choicesArray[i]];
-    }
-
-    return {
-        question: `What is ${num1} ${operator} ${num2}?`,
-        choices: choicesArray,
-        answerIndex: choicesArray.indexOf(correctAnswer)
-    };
 };
-
 module.exports = { playRound };
