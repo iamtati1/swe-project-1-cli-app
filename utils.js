@@ -1,11 +1,16 @@
-const prompt = require("prompt-sync")();
+const prompt = require("prompt-sync")({ sigint: true });
 
-const getInput = (message) => {
-    const input = prompt(message).trim().toLowerCase();
+const getInput = (message, timeLimitMs = null) => {
+    if (!timeLimitMs) {
+        return prompt(message);
+    }
 
-    if (input === "q" || input === "exit") {
-        console.log("\n👋 Exiting the quiz. See you next time!");
-        process.exit(0);
+    const start = Date.now();
+    const input = prompt(message);
+    const elapsed = Date.now() - start;
+
+    if (elapsed > timeLimitMs) {
+        return null; // timed out
     }
 
     return input;

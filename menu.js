@@ -9,7 +9,7 @@ const {
     generateLanguageQuestion,
 } = require("./quizData");
 
-const numQuestionsOptions = [5, 10, 12, 15, 20, 25, 30];
+const numQuestionsOptions = [5, 10, 15];
 
 const showMenu = () => {
     let isRunning = true;
@@ -24,61 +24,92 @@ const showMenu = () => {
 
         switch (choice) {
             case "1":
-                // --- Step 1: Choose category ---
-                console.log("\nChoose a category:");
+                console.log("\nChoose category:");
                 console.log("1. Math");
                 console.log("2. Science");
                 console.log("3. Reading");
                 console.log("4. Language");
 
-                const categoryChoice = getInput("Enter choice (1–4): ");
-                let questionGenerator;
+                const categoryChoice = getInput("Enter choice: ");
+
+                let categoryName; // ✅ Declare categoryName here
+                let questionGenerator; // ✅ Also declare generator here
 
                 switch (categoryChoice) {
                     case "1":
+                        categoryName = "Math";
                         questionGenerator = generateMathQuestion;
                         break;
                     case "2":
+                        categoryName = "Science";
                         questionGenerator = generateScienceQuestion;
                         break;
                     case "3":
+                        categoryName = "Reading";
                         questionGenerator = generateReadingQuestion;
                         break;
                     case "4":
+                        categoryName = "Language";
                         questionGenerator = generateLanguageQuestion;
                         break;
                     default:
-                        console.log("❌ Invalid category.");
-                        continue;
+                        console.log("❌ Invalid category choice");
+                        continue; // back to main menu
                 }
 
-                // --- Step 2: Choose number of questions ---
-                console.log(`\nChoose number of questions: ${numQuestionsOptions.join(", ")}`);
-                let numQuestions;
-                while (true) {
-                    const input = getInput("Enter number: ");
-                    if (numQuestionsOptions.includes(Number(input))) {
-                        numQuestions = Number(input);
-                        break;
-                    }
-                    console.log("❌ Invalid choice. Try again.");
-                }
+                console.log("\nChoose difficulty:");
+                console.log("1. Easy");
+                console.log("2. Medium");
+                console.log("3. Hard");
 
-                // --- Step 3: Play the round ---
-                playRound(numQuestions, questionGenerator);
+                const difficultyMap = {
+                    "1": "easy",
+                    "2": "medium",
+                    "3": "hard"
+                };
+
+                const difficulty = difficultyMap[getInput("Enter choice: ")];
+                if (!difficulty) continue;
+
+                console.log(
+                    `Choose number of questions: ${numQuestionsOptions.join(", ")}`
+                );
+
+                const numQuestions = Number(getInput("Enter number: "));
+                if (!numQuestionsOptions.includes(numQuestions)) continue;
+
+                playRound(numQuestions, questionGenerator, difficulty, categoryName);
                 break;
 
             case "2":
-                viewHighScores();
-                break;
+                console.log("\nView High Scores by Category:");
+                console.log("1. Math");
+                console.log("2. Science");
+                console.log("3. Reading");
+                console.log("4. Language");
 
+                const scoreChoice = getInput("Enter choice: ");
+
+                const categoryMap = {
+                    "1": "Math",
+                    "2": "Science",
+                    "3": "Reading",
+                    "4": "Language"
+                };
+
+                const selectedCategory = categoryMap[scoreChoice];
+
+                if (!selectedCategory) {
+                    console.log("❌ Invalid category");
+                    break;
+                }
+
+                viewHighScores(selectedCategory);
+                break;
             case "3":
                 console.log("Goodbye!");
                 isRunning = false;
                 break;
-
-            default:
-                console.log("❌ Invalid choice. Try again.");
         }
     }
 };
