@@ -53,6 +53,8 @@ const playRound = async (numQuestions, questionGenerator, difficulty, category, 
         if (elapsedMs > timeLimit) {
             console.log(`⏱️ Time’s up! You took ${elapsedSeconds}s`);
             showWrong();
+            showProgress(i + 1, numQuestions);
+            await new Promise(r => setTimeout(r, 300));
             continue;
         }
 

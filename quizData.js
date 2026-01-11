@@ -221,7 +221,6 @@ function generateLanguageQuestion() {
 // EXPORT
 
 module.exports = {
-    highScores,
     viewHighScores,
     updateHighScores,
     generateMathQuestion,

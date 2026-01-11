@@ -1,6 +1,6 @@
 const chalk = require("chalk").default;
 
-const showTitle = () => {
+const showTitle = () => { //prints ASCII + welcome message
     console.log(
         chalk.cyan(`
 ██████╗ ██████╗  █████╗ ██╗███╗   ██╗
@@ -24,7 +24,7 @@ const showTitle = () => {
 
 // Menu
 
-const showMainMenu = () => {
+const showMainMenu = () => { //prints menu options
     console.log(chalk.cyanBright.bold("\n📋 MAIN MENU"));
     console.log(chalk.gray("━━━━━━━━━━━━━━━━━━━━━━━━━━"));
 
@@ -60,7 +60,7 @@ const divider = () => {
 
 const clearScreen = () => console.clear();
 
-const space = () => console.log("\n");
+const space = () => console.log("\n"); // helpers (divider, clearScreen, space)
 
 const showCorrect = () => {
     console.log(theme.correct(`${icons.correct} Correct!`));
@@ -74,13 +74,13 @@ const showScore = (score, total) => {
     console.log(theme.score(`⭐ Score: ${score}/${total}`));
 };
 
-const showProgress = (current, total) => {
+const showProgress = (current, total) => {      // feedback( showCorrect, showWrong, showScore, showProgress)
     const filled = "█".repeat(current);
     const empty = "░".repeat(total - current);
     console.log(`[${filled}${empty}] ${current}/${total}`);
 };
 
-const loading = async (text = "Loading") => {
+const loading = async (text = "Loading") => { // loading(), countdown() > async animations
     process.stdout.write(theme.info(text));
     for (let i = 0; i < 3; i++) {
         await new Promise(r => setTimeout(r, 400));
@@ -98,7 +98,7 @@ const countdown = async () => {
 };
 
 const showRoundSummary = ({ correct, total, percentage }) => {
-    divider();
+    divider();                                                  //showRoundSummary
     console.log(theme.info("🏁 ROUND COMPLETE"));
     divider();
 
