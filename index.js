@@ -1,15 +1,14 @@
+//Main Application Entry Point
 const prompt = require("prompt-sync")();
 const { showMenu } = require("./menu");
-const quizData = require("./quizData");
-const { getInput } = require("./index");
+const { clearScreen, showTitle } = require("./ui");
 
-
-// This is the main entry point for the application.
 const startApp = () => {
-    console.clear();
-    console.log("🧠 Welcome to Brain Game!\n");
+    clearScreen();
+    showTitle();
 
-    const ready = prompt("Are you ready to start? (Yes/No): ").toLowerCase();
+    const ready = prompt("Are you ready to start? (y/n): ").toLowerCase();
+    prompt("\nPress Enter to continue...");
 
     if (ready !== "y") {
         console.log("\n👋 Come back when you're ready!");
@@ -17,11 +16,8 @@ const startApp = () => {
     }
 
     console.log("\n🚀 Starting quiz...\n");
-    showMenu();
 
-    console.log("\nGoodbye!");
+    showMenu();
 };
 
 startApp();
-
-module.exports = { getInput };

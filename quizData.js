@@ -1,9 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
-/* =========================
-   PERSISTENT HIGH SCORES
-========================= */
+
+// PERSISTENT HIGH SCORES
 const scoresFile = path.join(__dirname, "scores.json");
 
 const loadScores = () => {
@@ -81,9 +80,8 @@ const updateHighScores = ({ name, score, category, timeSeconds, accuracy }) => {
     saveScores();
 };
 
-/* =========================
-   UTILITY
-========================= */
+//  UTILITY
+
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -92,9 +90,8 @@ function shuffleArray(arr) {
     return arr;
 }
 
-/* =========================
-   MATH QUESTIONS
-========================= */
+// MATH QUESTIONS
+
 const generateMathQuestion = () => {
     const operators = ["+", "-", "*", "/"];
     const operator = operators[Math.floor(Math.random() * operators.length)];
@@ -134,10 +131,8 @@ const generateMathQuestion = () => {
         answerIndex: choicesArray.indexOf(correctAnswer)
     };
 };
+//SCIENCE QUESTIONS
 
-/* =========================
-   SCIENCE QUESTIONS
-========================= */
 const scienceQuestions = [
     { question: "What gas do plants absorb from the atmosphere?", choices: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], answerIndex: 2 },
     { question: "The Earth is the third planet from the Sun. True or False?", choices: ["True", "False"], answerIndex: 0 },
@@ -164,9 +159,9 @@ function generateScienceQuestion() {
     return q;
 }
 
-/* =========================
-   READING QUESTIONS
-========================= */
+
+// READING QUESTIONS
+
 const readingQuestions = [
     { passage: "Liam loves playing soccer after school. He practices every day to get better.", question: "Why does Liam practice soccer every day?", choices: ["To get better", "To make friends", "To watch TV", "To eat lunch"], answerIndex: 0 },
     { passage: "The library was quiet and full of books. Emma sat by the window and read her favorite story.", question: "Where did Emma sit while reading?", choices: ["By the window", "On the floor", "Under a tree", "At the cafeteria"], answerIndex: 0 },
@@ -194,9 +189,8 @@ function generateReadingQuestion() {
     return q;
 }
 
-/* =========================
-   LANGUAGE QUESTIONS
-========================= */
+// LANGUAGE QUESTIONS
+
 const languageQuestions = [
     { question: "Choose the correct sentence:", choices: ["She don't like apples.", "She doesn't like apples.", "She didn't likes apples.", "She don't likes apples."], answerIndex: 1 },
     { question: "Which word is a synonym for 'quick'?", choices: ["Fast", "Slow", "Lazy", "Late"], answerIndex: 0 },
@@ -223,9 +217,9 @@ function generateLanguageQuestion() {
     return q;
 }
 
-/* =========================
-   EXPORT
-========================= */
+
+// EXPORT
+
 module.exports = {
     highScores,
     viewHighScores,

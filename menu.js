@@ -1,7 +1,8 @@
 const { playRound } = require("./quizLogic");
 const { viewHighScores } = require("./quizData");
 const { getInput } = require("./utils");
-
+const { showMainMenu } = require("./ui");
+const prompt = require("prompt-sync")();
 const {
     generateMathQuestion,
     generateScienceQuestion,
@@ -11,19 +12,16 @@ const {
 
 const numQuestionsOptions = [5, 10, 15];
 
-const showMenu = () => {
+const showMenu = async () => {
     let isRunning = true;
 
     while (isRunning) {
-        console.log("\nMenu:");
-        console.log("1. Play Round");
-        console.log("2. View High Scores");
-        console.log("3. Exit");
+        showMainMenu(); // 🌸 Pink menu stays here
 
-        const choice = getInput("Choose an option: ");
+        const choice = getInput("");
 
         switch (choice) {
-            case "1":
+            case "1": {
                 console.log("\nChoose category:");
                 console.log("1. Math");
                 console.log("2. Science");
@@ -32,30 +30,20 @@ const showMenu = () => {
 
                 const categoryChoice = getInput("Enter choice: ");
 
-                let categoryName; // ✅ Declare categoryName here
-                let questionGenerator; // ✅ Also declare generator here
+                const categoryMap = {
+                    "1": ["Math", generateMathQuestion],
+                    "2": ["Science", generateScienceQuestion],
+                    "3": ["Reading", generateReadingQuestion],
+                    "4": ["Language", generateLanguageQuestion],
+                };
 
-                switch (categoryChoice) {
-                    case "1":
-                        categoryName = "Math";
-                        questionGenerator = generateMathQuestion;
-                        break;
-                    case "2":
-                        categoryName = "Science";
-                        questionGenerator = generateScienceQuestion;
-                        break;
-                    case "3":
-                        categoryName = "Reading";
-                        questionGenerator = generateReadingQuestion;
-                        break;
-                    case "4":
-                        categoryName = "Language";
-                        questionGenerator = generateLanguageQuestion;
-                        break;
-                    default:
-                        console.log("❌ Invalid category choice");
-                        continue; // back to main menu
+                const selected = categoryMap[categoryChoice];
+                if (!selected) {
+                    console.log("❌ Invalid category choice");
+                    break;
                 }
+
+                const [categoryName, questionGenerator] = selected;
 
                 console.log("\nChoose difficulty:");
                 console.log("1. Easy");
@@ -69,26 +57,27 @@ const showMenu = () => {
                 };
 
                 const difficulty = difficultyMap[getInput("Enter choice: ")];
-                if (!difficulty) continue;
+                if (!difficulty) break;
 
                 console.log(
                     `Choose number of questions: ${numQuestionsOptions.join(", ")}`
                 );
 
                 const numQuestions = Number(getInput("Enter number: "));
-                if (!numQuestionsOptions.includes(numQuestions)) continue;
+                if (!numQuestionsOptions.includes(numQuestions)) break;
 
-                playRound(numQuestions, questionGenerator, difficulty, categoryName);
+                const playerName = prompt("Enter your name: ").trim() || "Player";
+
+                await playRound(numQuestions, questionGenerator, difficulty, categoryName, playerName);
                 break;
+            }
 
-            case "2":
+            case "2": {
                 console.log("\nView High Scores by Category:");
                 console.log("1. Math");
                 console.log("2. Science");
                 console.log("3. Reading");
                 console.log("4. Language");
-
-                const scoreChoice = getInput("Enter choice: ");
 
                 const categoryMap = {
                     "1": "Math",
@@ -97,8 +86,7 @@ const showMenu = () => {
                     "4": "Language"
                 };
 
-                const selectedCategory = categoryMap[scoreChoice];
-
+                const selectedCategory = categoryMap[getInput("Enter choice: ")];
                 if (!selectedCategory) {
                     console.log("❌ Invalid category");
                     break;
@@ -106,10 +94,26 @@ const showMenu = () => {
 
                 viewHighScores(selectedCategory);
                 break;
+            }
+
             case "3":
-                console.log("Goodbye!");
+                console.clear();
+                console.log("📘 HOW TO PLAY\n");
+                console.log("🧠 Choose a category to test your knowledge");
+                console.log("⏱️ Answer questions before time runs out");
+                console.log("🔥 Harder difficulties give less time");
+                console.log("🏆 Scores are saved by category");
+                console.log("\nPress Enter to return to menu...");
+                getInput("");
+                break;
+
+            case "4":
+                console.log("👋 Goodbye!");
                 isRunning = false;
                 break;
+
+            default:
+                console.log("❌ Invalid option");
         }
     }
 };

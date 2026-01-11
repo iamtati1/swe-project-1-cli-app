@@ -8,6 +8,30 @@
     "date": "1/1/2026"
   },
   {
+    "name": "Tatiana",
+    "score": 9,
+    "category": "Science",
+    "timeSeconds": 52.9,
+    "accuracy": 90,
+    "date": "1/10/2026"
+  },
+  {
+    "name": "Player",
+    "score": 5,
+    "category": "Math",
+    "accuracy": 100,
+    "timeSeconds": 22.82,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "Player",
+    "score": 5,
+    "category": "Math",
+    "accuracy": 100,
+    "timeSeconds": 24.18,
+    "date": "1/8/2026"
+  },
+  {
     "name": "cds",
     "score": 5,
     "category": "Math",
@@ -16,12 +40,44 @@
     "date": "1/4/2026"
   },
   {
+    "name": "ilil",
+    "score": 5,
+    "category": "Reading",
+    "accuracy": 100,
+    "timeSeconds": 35.49,
+    "date": "1/8/2026"
+  },
+  {
     "name": "jgg",
     "score": 5,
     "category": "Math",
     "accuracy": 0,
     "timeSeconds": null,
     "date": "1/1/2026"
+  },
+  {
+    "name": "Tatiy",
+    "score": 4,
+    "category": "Math",
+    "accuracy": 80,
+    "timeSeconds": 25.84,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "tatiu",
+    "score": 4,
+    "category": "Language",
+    "accuracy": 80,
+    "timeSeconds": 34.29,
+    "date": "1/4/2026"
+  },
+  {
+    "name": "Tatiana",
+    "score": 4,
+    "category": "Math",
+    "accuracy": 80,
+    "timeSeconds": 48.2,
+    "date": "1/9/2026"
   },
   {
     "name": "md",
@@ -72,28 +128,124 @@
     "date": "1/3/2026"
   },
   {
+    "name": "fnvdf",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 2.73,
+    "date": "1/4/2026"
+  },
+  {
+    "name": "Player",
+    "score": 0,
+    "category": "Tatii",
+    "accuracy": 0,
+    "timeSeconds": 3.31,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "Player",
+    "score": 0,
+    "category": "Yua",
+    "accuracy": 0,
+    "timeSeconds": 3.31,
+    "date": "1/8/2026"
+  },
+  {
     "name": "fygh",
     "score": 0,
     "category": "Reading",
-    "timeSeconds": 8.22,
     "accuracy": 0,
+    "timeSeconds": 8.22,
     "date": "1/4/2026"
+  },
+  {
+    "name": "fdfg",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 8.96,
+    "date": "1/4/2026"
+  },
+  {
+    "name": "Player",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 18.8,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "Jojo",
+    "score": 0,
+    "category": "Science",
+    "accuracy": 0,
+    "timeSeconds": 55.75,
+    "date": "1/9/2026"
   },
   {
     "name": "gh",
     "score": 0,
     "category": "Language",
-    "timeSeconds": 158.88,
     "accuracy": 0,
+    "timeSeconds": 158.88,
     "date": "1/4/2026"
   },
   {
     "name": "jghghgk",
     "score": 0,
     "category": "Science",
-    "timeSeconds": 176.21,
     "accuracy": 0,
+    "timeSeconds": 176.21,
     "date": "1/4/2026"
+  },
+  {
+    "name": "Player",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 218.32,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "Tayi",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 523.68,
+    "date": "1/6/2026"
+  },
+  {
+    "name": "Player",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 808.52,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "Tatiana",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 1710.87,
+    "date": "1/4/2026"
+  },
+  {
+    "name": "Player",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 2062.45,
+    "date": "1/8/2026"
+  },
+  {
+    "name": "athhs",
+    "score": 0,
+    "category": "Math",
+    "accuracy": 0,
+    "timeSeconds": 7313.18,
+    "date": "1/6/2026"
   },
   {
     "name": "hjh",
